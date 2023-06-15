@@ -1,0 +1,318 @@
+// functional component
+
+//function Welcome(){
+  //return(
+    //<div>
+      //<h2>Welcome to React</h2>
+    //</div>
+  //)
+//}
+
+//<header className="App-header">
+        //<img src={logo} className="App-logo" alt="logo" />
+        //<p>
+          //Edit <code>src/App.js</code> and save to reload.
+        //</p>
+        //<a
+          //className="App-link"
+          //href="https://reactjs.org"
+          //target="_blank"
+          //rel="noopener noreferrer"
+        //>
+          //Learn React
+        //</a>
+      //</header> 
+
+// const {name, batch, education} = props
+
+/*import './App.css';
+import Card from './Card';
+function App() {
+let myPrices = [
+  {
+    plan: "FREE",
+    price: "$0/month",
+    features: [
+      {
+        name: "Single User",
+        isEnabled: true
+      },
+      {
+        name: "50GB Storage",
+        isEnabled: true
+      },
+      {
+        name: "Unlimited Public Projects",
+        isEnabled: true
+      },
+      {
+        name: "Community Access",
+        isEnabled: true
+      },
+      {
+        name: "Unlimited Private Projects",
+        isEnabled: false
+      },
+      {
+        name: "Dedicated Phone Support",
+        isEnabled: false
+      },
+      {
+        name: "Free Subdomain",
+        isEnabled: false
+      },
+      {
+        name: "Monthly Status Reports",
+        isEnabled: false
+      }
+    ]
+  },
+  {
+    plan: "PLUS",
+    price: "$9/month",
+    features: [
+      {
+        name: "5 Users",
+        isEnabled: true
+      },
+      {
+        name: "50GB Storage",
+        isEnabled: true
+      },
+      {
+        name: "Unlimited Public Projects",
+        isEnabled: true
+      },
+      {
+        name: "Community Access",
+        isEnabled: true
+      },
+      {
+        name: "Unlimited Private Projects",
+        isEnabled: true
+      },
+      {
+        name: "Dedicated Phone Support",
+        isEnabled:true        },
+      {
+        name: "Free Subdomain",
+        isEnabled:true        },
+      {
+        name: "Monthly Status Reports",
+        isEnabled: false        }
+    ]
+  },
+  {
+    plan: "PRO",
+    price: "$49/month",
+    features: [
+      {
+        name: "Unlimited Users",
+        isEnabled: true
+      },
+      {
+        name: "50GB Storage",
+        isEnabled: true
+      },
+      {
+        name: "Unlimited Public Projects",
+        isEnabled: true
+      },
+      {
+        name: "Community Access",
+        isEnabled: true
+      },
+      {
+        name: "Unlimited Private Projects",
+        isEnabled: true
+      },
+      {
+        name: "Dedicated Phone Support",
+        isEnabled: true
+      },
+      {
+        name: "Free Subdomain",
+        isEnabled: true
+      },
+      {
+        name: "Monthly Status Reports",
+        isEnabled: true
+      }
+    ]
+  }
+]
+ return (
+    <>
+        <section className="pricing py-5">
+          <div className="container">
+            <div className="row">
+              {
+                myPrices.map( (obj) =>{return<Card data={obj}></Card>})   // store data in myPrices map to card 
+              }
+            </div>
+          </div>
+        </section>
+    </>
+  );
+}
+
+export default App;*/
+
+
+/*function App() {
+  const [acceptCount, setAcceptCount] = useState(0)
+  const studentsData = [
+    {
+      name:"Sanjay",
+      batch:"B42WD",
+      education:"B.E",
+    },
+    {
+      name:"Abbas",
+      batch:"B43WD",
+      education:"B.E",
+    },
+    {
+      name:"Sangeeth",
+      batch:"B44WD",
+      education:"B.E",
+    },
+    {
+      name:"Baskar",
+      batch:"B45WD",
+      education:"B.E",
+    },
+
+  ]
+  return (
+    <div className="App">
+      <div>
+        <h1>Accepted Students : {acceptCount}</h1>
+      </div>
+
+      <div className="card-block">
+        {studentsData.map((stud,idx)=>(
+          <StudentCard
+          key={idx}
+          name={stud.name}
+          batch={stud.batch}
+          education={stud.education}
+          acceptCount={acceptCount}
+          setAcceptCount={setAcceptCount}
+          />
+        ))}
+        
+      </div>
+     {/*<StateFulComp/>
+     <StatelessComp/>*}
+
+    <Button
+      background={"crimson"}
+      color="white"
+      pd="15px"
+      m="5px"
+      wd="max-content"
+      onClickFunc={()=>console.log("custom-btn clicked")}
+    >
+         Add
+    </Button>
+
+    </div>
+  );
+}
+
+export default App;*/
+
+StudentCard.js 
+
+import { useState } from "react";
+import Button from "./Button"
+
+export default function StudentCard({name, batch, education, acceptCount, setAcceptCount}){
+    const [show, setShow] = useState(true)
+  
+    function handleAccept(){
+      setShow(!show)
+      setAcceptCount(acceptCount+1)
+    }
+  
+    function handleReject(){
+      setShow(!show)
+      setAcceptCount(acceptCount-1)
+      
+    }
+    return(
+      <div className='student-card'>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_J4IeylQzW8W_6kSUF9c7seuRg757hfjyhejz6QFv&s" alt="name"/>
+        <h3>{name}</h3>
+        <p>{batch}</p>
+        <p>{education}</p>
+  
+      {
+        show ?   <Button 
+        customClass='accept-btn btn'
+        onClickFunc={handleAccept}
+        >Accept</Button> 
+        :    
+        <Button 
+        customClass='reject-btn btn'
+        onClickFunc={handleReject}
+        >Reject</Button>
+      }
+        
+      </div>
+    )
+  }
+
+  StateFulComp.js
+
+  import { useState } from "react";
+
+export function StateFulComp(){
+    const [name, setName] = useState("")
+    return(
+        <>
+        <div>{name}</div>
+        <button
+        onClick={()=> setName("Arun")}
+        >click me</button>
+        </>
+    )
+}
+
+export function StatelessComp({name}){
+    return(
+        <div>{name}</div>
+    )
+}
+
+Button.js
+
+export default function Button({
+    background,
+    color,
+    pd,
+    m,
+    wd,
+    customClass,
+    children,
+    onClickFunc
+}){
+    return(
+        <button style={{
+            background:background,
+            color:color,
+            border:"none",
+            borderRadius:"5%",
+            fontFamily:"sans-serif",
+            padding:pd,
+            margin:m,
+            width:wd,
+        }}
+        className={customClass}
+        onClick={onClickFunc}
+        >
+           {children}
+        </button>
+    )
+}
